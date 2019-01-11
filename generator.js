@@ -7,10 +7,10 @@ function setup() {
 	createCanvas(600, 600);
 	frameRate(100)
 
-	fonteNormal = loadFont('FontFont_FF.Mark.Pro.Bold.otf');
-	fonteItalico = loadFont('FontFont_FF.Mark.Pro.Bold.Italic.otf');
-	fonteNegrito = loadFont('FontFont_FF.Mark.Pro.Black.otf');
-	fonteNegritoItalico = loadFont('FontFont_FF.Mark.Pro.Black.Italic.otf');
+	fonteNormal = loadFont('./fontes/Normal.otf');
+	fonteItalico = loadFont('./fontes/Italico.otf');
+	fonteNegrito = loadFont('./fontes/Negrito.otf');
+	fonteNegritoItalico = loadFont('./fontes/NegritoItalico.otf');
 		
 	carregarImagem()
 }
@@ -121,6 +121,7 @@ function draw(){
 		
 		image(logo, canvas.width*largRetangulo.value/40-logo.width/4 - 60, canvas.height-30-logo.height/4 - 25, logo.width/1.75, logo.height/1.75)
 
+		noStroke()
 		rect(canvas.width*largRetangulo.value/40-logo.width/4 + 50, canvas.height-25-logo.height/4 - 25, logo.width/2, logo.height/2)
 		image(logoNovo, canvas.width*largRetangulo.value/40-logo.width/4 + 50, canvas.height-25-logo.height/4 - 25, logo.width/2, logo.height/2)
 	}else{
@@ -131,6 +132,7 @@ function draw(){
 
 		image(logo,canvas.width - canvas.width*largRetangulo.value/40 - logo.width/2 + 90, canvas.height-30-logo.height/4 - 25, logo.width/1.75, logo.height/1.75)
 
+		noStroke()
 		rect(canvas.width - canvas.width*largRetangulo.value/40 - logo.width/4 - 50, canvas.height-25-logo.height/4 - 25, logo.width/2, logo.height/2)
 		image(logoNovo,canvas.width - canvas.width*largRetangulo.value/40 - logo.width/4 - 50, canvas.height-25-logo.height/4 - 25, logo.width/2, logo.height/2)
 
