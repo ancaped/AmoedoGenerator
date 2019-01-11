@@ -19,7 +19,7 @@ function setup() {
 }
 
 function carregarImagem(){
-	img = loadImage(selectImage.value)
+	img = loadImage("./imagens/" + selectImage.value)
 	imagem = selectImage.value
 
 	logoOrig  = loadImage("logo_ja.png")
