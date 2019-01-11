@@ -19,9 +19,10 @@ function carregarImagem(){
 	img = loadImage(selectImage.value)
 	imagem = selectImage.value
 
-	logoOrig = loadImage("logo_ja.png")
-	logoAncap= loadImage("logo_ancap.png")
-	logoNovo = loadImage("logo_novo.png")
+	logoOrig  = loadImage("logo_ja.png")
+	logoAncap = loadImage("logo_ancap.png")
+	logoAncapB= loadImage("logo_ancap_branco.png")
+	logoNovo  = loadImage("logo_novo.png")
 }
 
 function draw(){
@@ -119,7 +120,11 @@ function draw(){
 	
 	// escreve o texto em si e o logotipo do João Amoedo e do Partido Novo
 
-	if(logo_ancap.checked){logo = logoAncap}else{logo = logoOrig}
+	if(logo_ancap.checked){
+		
+		if (scheme.value == "ancap" && retangulo.checked){logo = logoAncapB}else{logo=logoAncap}
+		
+	}else{logo = logoOrig}
 
 	if (lado.value == "esquerdo"){
 		textAlign(LEFT, CENTER)
