@@ -1,6 +1,9 @@
 var dwn = document.getElementById('btndownload')
 var fonteNormal, fonteItalico, fonteNegrito, fonteNegritoItalico
 var corRetg, corHighL, corLogo
+var atualizacao = false
+
+var context = canvas.getContext("2d");
 
 function setup() {
 
@@ -24,6 +27,11 @@ function carregarImagem(){
 	logoAncapB= loadImage("logo_ancap_branco.png")
 	logoNovo  = loadImage("logo_novo.png")
 }
+
+// Upload de imagens
+
+function atualiza(){atualizacao = true}
+fileUpload.addEventListener("change", atualiza, false)
 
 function draw(){
 
@@ -50,8 +58,35 @@ function draw(){
 	background(220)
 
 	// Carrega a imagem
-	if(imagem != selectImage.value){carregarImagem()}
-	image(img, 0, 0, canvas.width, canvas.height)
+	if (custom.checked){
+
+		if (atualizacao == true){
+
+			if ( fileUpload.files && fileUpload.files[0] ) {
+		        var FR= new FileReader();
+		        FR.onload = function(e) {
+		           var img2 = new Image();
+		           img2.addEventListener("load", function() {
+		             //context.drawImage(img, 0, 0)
+		             console.log(img2)
+
+		             img = createImage(img2.width, img2.height)
+		             img.drawingContext.drawImage(img2, 0, 0)
+		             console.log(img)
+		           });
+		           img2.src = e.target.result;
+		        };       
+		        FR.readAsDataURL( fileUpload.files[0] );
+		    }
+
+			atualizacao = false
+		}
+
+	}else{
+		if(imagem != selectImage.value){
+			carregarImagem()
+		}
+	}
 
 	// inverte a imagem se a opção estiver marcada
 	if(inverter.checked){
@@ -59,6 +94,8 @@ function draw(){
 		scale(-1,1)
 		image(img,-canvas.width, 0, canvas.width,canvas.height)
 		pop()
+	}else{
+		image(img, 0, 0, canvas.width, canvas.height)
 	}
 
 	// Desenhar retângulo
