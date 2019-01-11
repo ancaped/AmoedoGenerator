@@ -52,6 +52,14 @@ function draw(){
 	if(imagem != selectImage.value){carregarImagem()}
 	image(img, 0, 0, canvas.width, canvas.height)
 
+	// inverte a imagem se a opção estiver marcada
+	if(inverter.checked){
+		push()
+		scale(-1,1)
+		image(img,-canvas.width, 0, canvas.width,canvas.height)
+		pop()
+	}
+
 	// Desenhar retângulo
 	if (retangulo.checked){
 		noStroke() // remove as bordas do retângulo
