@@ -1,13 +1,15 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <script src="./assets/js/jquery-3.3.1.min.js" ></script>
+    <script src="./assets/js/generator.js"></script>
   </head>
 
 
   <body>
 
     <div class="canvas-container" style="width: 600px; height: 600px; position: absolute; -moz-user-select: none;">
-  		<canvas id='canvas' width=600 height=600 style=""/>
+  		<canvas id='canvas' width="100%" height="100%">
   	</div>
   	
     <!--  Área para escrever o texto da imagem  -->
@@ -81,12 +83,11 @@
 
     <button id="btndownload" style="position: absolute; left: 650px; top: 585px;" >Salvar imagem</button>
 
-    <script src="generator.js"></script>
+
 
     <p style="position: absolute; left: 15px; top: 615px;">Pr&oacuteximas atualiza&ccedil&otildees:<br>
       - Mais imagens pr&eacute definidas<br>
       - Mais esquemas de cores<br>
       - Op&ccedil&atildeo de usar cores personalizadas<br></p>
   </body>
-
 </html>
