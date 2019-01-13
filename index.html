@@ -1,93 +1,100 @@
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
-    <script src="./assets/js/jquery-3.3.1.min.js" ></script>
-    <script src="./assets/js/generator.js"></script>
-  </head>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+  <script src="./assets/js/jquery-3.3.1.min.js"></script>
+  <script src="./assets/js/generator.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Web Amoedo Generator ">
+  <meta name="keywords" content="HTML,CSS,JavaScript">
+  <meta name="author" content="Pedro Henrique Braga">
+  <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
+</head>
 
 
-  <body>
+<body>
 
-    <div class="canvas-container" style="width: 600px; height: 600px; position: absolute; -moz-user-select: none;">
-  		<canvas id='canvas' width="100%" height="100%">
-  	</div>
-  	
-    <!--  Área para escrever o texto da imagem  -->
-    <textarea type="text" style="position: absolute; left: 650px; top: 65px; width: 250px; height: 300px; resize:none" id="texto"></textarea>
-    
-    <!--  Tamanho do texto  -->
-    <input type="range" min="1" max="100" value="30" class="slider" id="tamanho" style="position: absolute; left: 900px; top: 65px;">
-  	
+  <div class="canvas-container" style="width: 600px; height: 600px; position: absolute; -moz-user-select: none;">
+    <canvas id='canvas' width="100%" height="100%">
+  </div>
 
+  <!--  Área para escrever o texto da imagem  -->
+  <textarea type="text" style="position: absolute; left: 650px; top: 65px; width: 250px; height: 300px; resize:none" id="texto"></textarea>
+
+  <!--  Tamanho do texto  -->
+  <input type="range" min="1" max="100" value="30" class="slider" id="tamanho" style="position: absolute; left: 900px; top: 65px;">
 
 
-    <!-- LISTA DE IMAGENS DISPONÍVEIS
+
+
+  <!-- LISTA DE IMAGENS DISPONÍVEIS
     pode (e deve) ser alterada para incluir novas imagens. As imagens devem ser necessariamente quadradas (ou o mais quadradas possivel)  -->
-    <select style="position: absolute; left: 910px; top: 100px;" id="selectImage">
-      <option value="amoedo1.jpg">Imagem 1</option>
-      <option value="amoedo2.jpg">Imagem 2</option>
-      <option value="amoedo3.png">Imagem 3</option>
-    </select>
-    <!-- Fim da lista de imagens -->
+  <select style="position: absolute; left: 910px; top: 100px;" id="selectImage">
+    <option value="amoedo1.jpg">Imagem 1</option>
+    <option value="amoedo2.jpg">Imagem 2</option>
+    <option value="amoedo3.png">Imagem 3</option>
+  </select>
+  <!-- Fim da lista de imagens -->
 
 
 
 
-    <!-- Lado do texto -->
-    <select style="position: absolute; left: 910px; top: 125px;" id="lado">
-      <option value="esquerdo">Lado esquerdo</option>
-      <option value="direito">Lado direito</option>
-    </select>
+  <!-- Lado do texto -->
+  <select style="position: absolute; left: 910px; top: 125px;" id="lado">
+    <option value="esquerdo">Lado esquerdo</option>
+    <option value="direito">Lado direito</option>
+  </select>
 
-    <!-- Estilo da fonte -->
-    <select style="position: absolute; left: 910px; top: 150px;" id="fonte">
-      <option value="normal">Fonte normal</option>
-      <option value="italico">It&aacutelico</option>
-      <option value="negrito">Negrito</option>
-      <option value="negritoitalico">Negrito + it&aacutelico</option>
-    </select>
+  <!-- Estilo da fonte -->
+  <select style="position: absolute; left: 910px; top: 150px;" id="fonte">
+    <option value="normal">Fonte normal</option>
+    <option value="italico">It&aacutelico</option>
+    <option value="negrito">Negrito</option>
+    <option value="negritoitalico">Negrito + it&aacutelico</option>
+  </select>
 
-    <!-- Esquema de cores -->
-    <select style="position: absolute; left: 910px; top: 175px;" id="scheme">
-      <option value="laranja">Laranja</option>
-      <option value="azul">Azul</option>
-      <option value="ancap">Ancap</option>
-    </select>
+  <!-- Esquema de cores -->
+  <select style="position: absolute; left: 910px; top: 175px;" id="scheme">
+    <option value="laranja">Laranja</option>
+    <option value="azul">Azul</option>
+    <option value="ancap">Ancap</option>
+  </select>
 
-    <!-- Cor personalizada -->
-    <label style="position: absolute; left: 910px; top: 210px;">Cor customizada </label>
-    <input type="color" name="color" id="colorpicker" style="position: absolute; left: 936px; top: 232px;" >
+  <!-- Cor personalizada -->
+  <label style="position: absolute; left: 910px; top: 210px;">Cor customizada </label>
+  <input type="color" name="color" id="colorpicker" style="position: absolute; left: 936px; top: 232px;">
 
-    <!--  Inserir imagem  -->
-    <input type="checkbox" name="Imagem personalizada" id="custom" style="position: absolute; left: 910px; top: 320px;">
-    <p style="position: absolute; left: 935px; top: 305px;"> Usar imagem personalizada</p>
-    <input type='file' id="fileUpload" style="position: absolute; left: 910px; top: 345px;" accept="image/gif, image/jpeg, image/png"/>
+  <!--  Inserir imagem  -->
+  <input type="checkbox" name="Imagem personalizada" id="custom" style="position: absolute; left: 910px; top: 320px;">
+  <p style="position: absolute; left: 935px; top: 305px;"> Usar imagem personalizada</p>
+  <input type='file' id="fileUpload" style="position: absolute; left: 910px; top: 345px;" accept="image/gif, image/jpeg, image/png" />
 
-    <!--  Opções disponíveis  -->
-    <div class="container" style="position: absolute; left: 650px; top: 360px; width: 250px; height: 200px">
-      <p style="position: absolute; left: 0px; top: 0px;">Op&ccedil&otildees:</p>
+  <!--  Opções disponíveis  -->
+  <div class="container" style="position: absolute; left: 650px; top: 360px; width: 250px; height: 200px">
+    <p style="position: absolute; left: 0px; top: 0px;">Op&ccedil&otildees:</p>
 
-      <div class = "container" style="position: absolute; left: 0px; top: 45px; width: 250px; height: 200px">
-        <input type="checkbox" name="Retangulo" id="retangulo"> Ret&acircngulo<br>
-        <input type="checkbox" name="Highlight" id="highlight"> Highlight<br>
-        <input type="checkbox" name="Fonte branca" id="branco" checked> Fonte branca<br>
-        <input type="checkbox" name="Logo Ancap" id="logo_ancap"> Logotipo Ancap<br>
-        <input type="checkbox" name="Inverter Imagem" id="inverter"> Inverter Imagem<br>
-
-
-        <input type="range" min="0" max="20" value="10" class="slider" id="largRetangulo" style="position: absolute; left: 100px; top: 5px; width: 140px">
-      </div>
-    </div> 
+    <div class="container" style="position: absolute; left: 0px; top: 45px; width: 250px; height: 200px">
+      <input type="checkbox" name="Retangulo" id="retangulo"> Ret&acircngulo<br>
+      <input type="checkbox" name="Highlight" id="highlight"> Highlight<br>
+      <input type="checkbox" name="Fonte branca" id="branco" checked> Fonte branca<br>
+      <input type="checkbox" name="Logo Ancap" id="logo_ancap"> Logotipo Ancap<br>
+      <input type="checkbox" name="Inverter Imagem" id="inverter"> Inverter Imagem<br>
 
 
-
-    <button id="btndownload" style="position: absolute; left: 650px; top: 585px;" >Salvar imagem</button>
+      <input type="range" min="0" max="20" value="10" class="slider" id="largRetangulo" style="position: absolute; left: 100px; top: 5px; width: 140px">
+    </div>
+  </div>
 
 
 
-    <p style="position: absolute; left: 15px; top: 615px;">Pr&oacuteximas atualiza&ccedil&otildees:<br>
-      - Mais imagens pr&eacute definidas<br>
-      - Mais esquemas de cores<br>
-      - Op&ccedil&atildeo de usar cores personalizadas<br></p>
-  </body>
+  <button id="btndownload" style="position: absolute; left: 650px; top: 585px;">Salvar imagem</button>
+
+
+
+  <p style="position: absolute; left: 15px; top: 615px;">Pr&oacuteximas atualiza&ccedil&otildees:<br>
+    - Mais imagens pr&eacute definidas<br>
+    - Mais esquemas de cores<br>
+    - Op&ccedil&atildeo de usar cores personalizadas<br></p>
+</body>
+
 </html>
