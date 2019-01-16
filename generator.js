@@ -92,10 +92,10 @@ function draw(){
 	if(inverter.checked){
 		push()
 		scale(-1,1)
-		image(img,-canvas.width, 0, canvas.width,canvas.height)
+		image(img,-canvas.width + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height,canvas.height)
 		pop()
 	}else{
-		image(img, 0, 0, canvas.width, canvas.height)
+		image(img, 0 + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height, canvas.height)
 	}
 
 	// Desenhar retângulo
