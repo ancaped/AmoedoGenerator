@@ -13,16 +13,16 @@ function setup() {
 	createCanvas(600, 600);
 	frameRate(100)
 
-	fonteNormal = loadFont('./fontes/Normal.otf');
-	fonteItalico = loadFont('./fontes/Italico.otf');
-	fonteNegrito = loadFont('./fontes/Negrito.otf');
-	fonteNegritoItalico = loadFont('./fontes/NegritoItalico.otf');
+	fonteNormal = loadFont('./assets/fontes/Normal.otf');
+	fonteItalico = loadFont('./assets/fontes/Italico.otf');
+	fonteNegrito = loadFont('./assets/fontes/Negrito.otf');
+	fonteNegritoItalico = loadFont('./assets/fontes/NegritoItalico.otf');
 
 	carregarImagem()
 }
 
 function carregarImagem() {
-	img = loadImage("./imagens/" + selectImage.value)
+	img = loadImage("./assets/imagens/" + selectImage.value)
 	imagem = selectImage.value
 
 	logoOrig = loadImage("logo_ja.png")
@@ -50,7 +50,7 @@ colorpicker3.onclick = function () {
 };
 
 scheme.onchange = function (){
-	escolheuCor=false; 
+	escolheuCor=false;
 };
 // Fim de definição do esquema de cores
 
