@@ -47,7 +47,6 @@ function carregarImagem() {
 	img = loadImage("./assets/imagens/" + selectImage.value)
 	imagem = selectImage.value;
 
-	logoOrig = loadImage("logo_ja.png")
 	logoAncap = loadImage("logo_ancap.png")
 	logoAncapB = loadImage("logo_ancap_branco.png")
 	logoNovo = loadImage("logo_novo.png")
