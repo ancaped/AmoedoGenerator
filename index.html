@@ -1,6 +1,13 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./assets/js/generator.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Web Amoedo Generator ">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="author" content="Edson Ferrari">
+    <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
   </head>
 
 
@@ -9,13 +16,13 @@
     <div class="canvas-container" style="width: 600px; height: 600px; position: absolute; -moz-user-select: none;">
       <canvas id='canvas' width=600 height=600 style=""/>
     </div>
-    
+
     <!--  Área para escrever o texto da imagem  -->
     <textarea type="text" style="position: absolute; left: 650px; top: 65px; width: 250px; height: 300px; resize:none" id="texto"></textarea>
-    
+
     <!--  Tamanho do texto  -->
     <input type="range" min="1" max="100" value="30" class="slider" id="tamanho" style="position: absolute; left: 900px; top: 65px;">
-    
+
 
 
 
@@ -81,13 +88,12 @@
 
         <input type="range" min="0" max="20" value="10" class="slider" id="largRetangulo" style="position: absolute; left: 100px; top: 5px; width: 140px">
       </div>
-    </div> 
+    </div>
 
 
 
     <button id="btndownload" style="position: absolute; left: 650px; top: 585px;" >Salvar imagem</button>
 
-    <script src="generator.js"></script>
 
     <p style="position: absolute; left: 15px; top: 615px;">Pr&oacuteximas atualiza&ccedil&otildees:<br>
       - Mais imagens pr&eacute definidas<br>
