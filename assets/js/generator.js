@@ -199,7 +199,7 @@ function draw() {
 
 		if (scheme.value == "ancap" && retangulo.checked) { logo = logoAncapB } else { logo = logoAncap }
 
-	} else { logo = logoAncap }
+	} else { logo = logoOrig }
 
 	if (lado.value == "esquerdo") {
 		textAlign(LEFT, CENTER)
