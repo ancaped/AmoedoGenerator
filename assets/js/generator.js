@@ -1,53 +1,32 @@
-
-var dwn = null;
-var colorpicker = null;
-var fonteNormal, fonteItalico, fonteNegrito, fonteNegritoItalico;
+var dwn = document.getElementById('btndownload')
+var colorpicker = document.getElementById('colorpicker');
+var fonteNormal, fonteItalico, fonteNegrito, fonteNegritoItalico
 var corRetg, corHighL, corLogo;
 var atualizacao = false; // esqueceu do ';' rsrsrs...
-var fileUpload= null ;
 
-var context;
+var context = canvas.getContext("2d");
 
 var escolheuCor = false;
 
-$(function () {
-	dwn = document.getElementById('btndownload');
-	colorpicker = document.getElementById('colorpicker');
-	context = canvas.getContext("2d");
-	fileUpload = document.getElementById('fileUpload');
-
-	fileUpload.addEventListener("change", atualiza, false);
-
-	// onclik's 
-	colorpicker.onclick = function () {
-		escolheuCor = true;
-	};
-
-	scheme.onclick = function () {
-		escolheuCor = false;
-	};
-});
-
-
-
-
 function setup() {
-	createCanvas(600,600);
-	frameRate(100);
 
-	fonteNormal = loadFont('./assets/fontes/Normal.otf');
-	fonteItalico = loadFont('./assets/fontes/Italico.otf');
-	fonteNegrito = loadFont('./assets/fontes/Negrito.otf');
-	fonteNegritoItalico = loadFont('./assets/fontes/NegritoItalico.otf');
+	createCanvas(600, 600);
+	frameRate(100)
 
-	carregarImagem();
+	fonteNormal = loadFont('./fontes/Normal.otf');
+	fonteItalico = loadFont('./fontes/Italico.otf');
+	fonteNegrito = loadFont('./fontes/Negrito.otf');
+	fonteNegritoItalico = loadFont('./fontes/NegritoItalico.otf');
+
+	carregarImagem()
 }
 
 function carregarImagem() {
-	img = loadImage("./assets/imagens/" + selectImage.value)
-	imagem = selectImage.value;
+	img = loadImage("./imagens/" + selectImage.value)
+	imagem = selectImage.value
 
-	logoOrig = loadImage("logo_ancap.png")
+	logoOrig = loadImage("logo_ja.png")
+	logoAncap = loadImage("logo_ancap.png")
 	logoAncapB = loadImage("logo_ancap_branco.png")
 	logoNovo = loadImage("logo_novo.png")
 }
@@ -55,21 +34,51 @@ function carregarImagem() {
 // Upload de imagens
 
 function atualiza() { atualizacao = true }
+fileUpload.addEventListener("change", atualiza, false);
+
+// Define esquema de cores personalizada ou não
+colorpicker1.onclick = function () {
+	escolheuCor = true;
+};
+
+colorpicker2.onclick = function () {
+	escolheuCor = true;
+};
+
+colorpicker3.onclick = function () {
+	escolheuCor = true;
+};
+
+scheme.onchange = function (){
+	escolheuCor=false; 
+};
+// Fim de definição do esquema de cores
 
 
 function draw() {
 
 	if (escolheuCor) {
-		var hexcolor = colorpicker.value.split('#')[1];
-		red_value = parseInt(hexcolor.slice(0, 2), 16);
-		green_value = parseInt(hexcolor.slice(2, 4), 16);
-		blue_value = parseInt(hexcolor.slice(4, 6), 16);
+		var hexcolor1 = colorpicker1.value.split('#')[1];
+		red_value1 = parseInt(hexcolor1.slice(0, 2),16);
+		green_value1 = parseInt(hexcolor1.slice(2, 4),16);
+		blue_value1 = parseInt(hexcolor1.slice(4, 6),16);
+
+		var hexcolor2 = colorpicker2.value.split('#')[1];
+		red_value2 = parseInt(hexcolor2.slice(0, 2),16);
+		green_value2 = parseInt(hexcolor2.slice(2, 4),16);
+		blue_value2 = parseInt(hexcolor2.slice(4, 6),16);
+
+		var hexcolor3 = colorpicker3.value.split('#')[1];
+		red_value3 = parseInt(hexcolor3.slice(0, 2),16);
+		green_value3 = parseInt(hexcolor3.slice(2, 4),16);
+		blue_value3 = parseInt(hexcolor3.slice(4, 6),16);
 
 		// aqui eu adaptei pra continuar funcionando
 		// seu código lá debaixo
-		corRetg = "rgb(" + red_value + "," + green_value + "," + blue_value + ")";
-		corHighL = "rgb(" + red_value + "," + green_value + "," + blue_value + ")";
-		corLogo = "rgb(" + red_value + "," + green_value + "," + blue_value + ")";
+		corRetg = "rgb(" + red_value1 + "," + green_value1 + "," + blue_value1 + ")";
+		corHighL = "rgb(" + red_value2 + "," + green_value2 + "," + blue_value2 + ")";
+		corLogo = "rgb(" + red_value3 + "," + green_value3 + "," + blue_value3 + ")";
+
 	} else {
 		// Define o esquema de cores da imagem
 		switch (scheme.value) {
@@ -129,10 +138,10 @@ function draw() {
 	if (inverter.checked) {
 		push()
 		scale(-1, 1)
-		image(img, -canvas.width, 0, canvas.width, canvas.height)
+		image(img,-canvas.width + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height,canvas.height)
 		pop()
 	} else {
-		image(img, 0, 0, canvas.width, canvas.height)
+		image(img, 0 + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height, canvas.height)
 	}
 
 	// Desenhar retângulo
