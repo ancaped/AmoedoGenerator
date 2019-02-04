@@ -92,7 +92,7 @@ function draw() {
 				corHighL = "rgb(25,40,75)";
 				corLogo = "rgb(245,147,48)";
 				break;
-			case "ancap":
+			case "preto":
 				corRetg = "rgb(240,220,0)";
 				corHighL = "rgb(0,0,0)";
 				corLogo = "rgb(0,0,0)";
