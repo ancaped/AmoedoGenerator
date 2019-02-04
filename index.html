@@ -1,7 +1,8 @@
 <html>
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
-    <meta charset="UTF-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>    <meta charset="UTF-8" />
   </head>
 
 
@@ -47,10 +48,15 @@
     </select>
 
     <!-- Esquema de cores -->
-    <select style="position: absolute; left: 910px; top: 175px;" id="scheme">
-      <option value="laranja">Laranja</option>
-      <option value="azul">Azul</option>
-      <option value="ancap">Ancap</option>
+    <select style="position: absolute; left: 910px; top: 175px;" id="demo-htmlselect">
+        <option value="0" data-imagesrc="http://i.imgur.com/XkuTj3B.png"
+            data-description="Description with Facebook">Facebook</option>
+        <option value="1" data-imagesrc="http://i.imgur.com/8ScLNnk.png"
+            data-description="Description with Twitter">Twitter</option>
+        <option value="2" selected="selected" data-imagesrc="http://i.imgur.com/aDNdibj.png"
+            data-description="Description with LinkedIn">LinkedIn</option>
+        <option value="3" data-imagesrc="http://i.imgur.com/kFAk2DX.png"
+            data-description="Description with Foursquare">Foursquare</option>
     </select>
 
     <!-- Cor personalizada -->
