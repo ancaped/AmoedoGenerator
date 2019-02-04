@@ -81,36 +81,28 @@ function draw() {
 
 	} else {
 		// Define o esquema de cores da imagem
-		var ddData = [
-    {
-        text: "Facebook",
-        value: 1,
-        selected: false,
-        description: "Description with Facebook",
-        imageSrc: "http://i.imgur.com/XkuTj3B.png"
-    },
-    {
-        text: "Twitter",
-        value: 2,
-        selected: false,
-        description: "Description with Twitter",
-        imageSrc: "http://i.imgur.com/8ScLNnk.png"
-    },
-    {
-        text: "LinkedIn",
-        value: 3,
-        selected: true,
-        description: "Description with LinkedIn",
-        imageSrc: "http://i.imgur.com/aDNdibj.png"
-    },
-    {
-        text: "Foursquare",
-        value: 4,
-        selected: false,
-        description: "Description with Foursquare",
-        imageSrc: "http://i.imgur.com/kFAk2DX.png"
-    }
-];
+		switch (scheme.value) {
+			case "laranja":
+				corRetg = "rgb(245,147,48)"; // esqueceu de novo...
+				corHighL = "rgb(225,110,40)";
+				corLogo = "rgb(225,110,40)";
+				break;
+			case "azul":
+				corRetg = "rgb(0,73,114)";
+				corHighL = "rgb(25,40,75)";
+				corLogo = "rgb(245,147,48)";
+				break;
+			case "ancap":
+				corRetg = "rgb(240,220,0)";
+				corHighL = "rgb(0,0,0)";
+				corLogo = "rgb(0,0,0)";
+				break;
+		}
+	}
+
+	clear();
+	background(220);
+
 
 	// Carrega a imagem
 	if (custom.checked) {
