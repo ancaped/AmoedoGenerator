@@ -25,7 +25,7 @@ function carregarImagem() {
 	img = loadImage("./assets/imagens/" + selectImage.value)
 	imagem = selectImage.value
 
-	logoOrig = loadImage("./assets/logos/logo_ja.png")
+	logoOrig = loadImage("./assets/logos/logo_ancap.png")
 	logoAncap = loadImage("./assets/logos/logo_ancap.png")
 	logoAncapB = loadImage("./assets/logos/logo_ancap_branco.png")
 	logoNovo = loadImage("./assets/logos/logo_novo.png")
