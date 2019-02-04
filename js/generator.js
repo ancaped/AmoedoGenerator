@@ -1,263 +1,99 @@
-var dwn = document.getElementById('btndownload')
-var colorpicker = document.getElementById('colorpicker');
-var fonteNormal, fonteItalico, fonteNegrito, fonteNegritoItalico
-var corRetg, corHighL, corLogo;
-var atualizacao = false; // esqueceu do ';' rsrsrs...
-
-var context = canvas.getContext("2d");
-
-var escolheuCor = false;
-
-function setup() {
-
-	createCanvas(600, 600);
-	frameRate(100)
-
-	fonteNormal = loadFont('./assets/fontes/Normal.otf');
-	fonteItalico = loadFont('./assets/fontes/Italico.otf');
-	fonteNegrito = loadFont('./assets/fontes/Negrito.otf');
-	fonteNegritoItalico = loadFont('./assets/fontes/NegritoItalico.otf');
-
-	carregarImagem()
-}
-
-function carregarImagem() {
-	img = loadImage("./assets/imagens/" + selectImage.value)
-	imagem = selectImage.value
-
-	logoOrig = loadImage("./assets/logos/logo_ja.png")
-	logoAncap = loadImage("./assets/logos/logo_ancap.png")
-	logoAncapB = loadImage("./assets/logos/logo_ancap_branco.png")
-	logoNovo = loadImage("./assets/logos/logo_novo.png")
-}
-
-// Upload de imagens
-
-function atualiza() { atualizacao = true }
-fileUpload.addEventListener("change", atualiza, false);
-
-// Define esquema de cores personalizada ou não
-colorpicker1.onclick = function () {
-	escolheuCor = true;
-};
-
-colorpicker2.onclick = function () {
-	escolheuCor = true;
-};
-
-colorpicker3.onclick = function () {
-	escolheuCor = true;
-};
-
-scheme.onchange = function (){
-	escolheuCor=false;
-};
-// Fim de definição do esquema de cores
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
+  </head>
 
 
-function draw() {
+  <body>
 
-	if (escolheuCor) {
-		var hexcolor1 = colorpicker1.value.split('#')[1];
-		red_value1 = parseInt(hexcolor1.slice(0, 2),16);
-		green_value1 = parseInt(hexcolor1.slice(2, 4),16);
-		blue_value1 = parseInt(hexcolor1.slice(4, 6),16);
+    <div class="canvas-container" style="width: 600px; height: 600px; position: absolute; -moz-user-select: none;">
+      <canvas id='canvas' width=600 height=600 style=""/>
+    </div>
 
-		var hexcolor2 = colorpicker2.value.split('#')[1];
-		red_value2 = parseInt(hexcolor2.slice(0, 2),16);
-		green_value2 = parseInt(hexcolor2.slice(2, 4),16);
-		blue_value2 = parseInt(hexcolor2.slice(4, 6),16);
+    <!--  Área para escrever o texto da imagem  -->
+    <textarea type="text" style="position: absolute; left: 650px; top: 65px; width: 250px; height: 300px; resize:none" id="texto"></textarea>
 
-		var hexcolor3 = colorpicker3.value.split('#')[1];
-		red_value3 = parseInt(hexcolor3.slice(0, 2),16);
-		green_value3 = parseInt(hexcolor3.slice(2, 4),16);
-		blue_value3 = parseInt(hexcolor3.slice(4, 6),16);
+    <!--  Tamanho do texto  -->
+    <input type="range" min="1" max="100" value="30" class="slider" id="tamanho" style="position: absolute; left: 900px; top: 65px;">
 
-		// aqui eu adaptei pra continuar funcionando
-		// seu código lá debaixo
-		corRetg = "rgb(" + red_value1 + "," + green_value1 + "," + blue_value1 + ")";
-		corHighL = "rgb(" + red_value2 + "," + green_value2 + "," + blue_value2 + ")";
-		corLogo = "rgb(" + red_value3 + "," + green_value3 + "," + blue_value3 + ")";
 
-	} else {
-		// Define o esquema de cores da imagem
-		switch (scheme.value) {
-			case "laranja":
-				corRetg = "rgb(245,147,48)"; // esqueceu de novo...
-				corHighL = "rgb(225,110,40)";
-				corLogo = "rgb(225,110,40)";
-				break;
-			case "azul":
-				corRetg = "rgb(0,73,114)";
-				corHighL = "rgb(25,40,75)";
-				corLogo = "rgb(245,147,48)";
-				break;
-			case "ancap":
-				corRetg = "rgb(240,220,0)";
-				corHighL = "rgb(0,0,0)";
-				corLogo = "rgb(0,0,0)";
-				break;
-		}
-	}
 
-	clear();
-	background(220);
 
-	// Carrega a imagem
-	if (custom.checked) {
+    <!-- LISTA DE IMAGENS DISPONÍVEIS
+    pode (e deve) ser alterada para incluir novas imagens. As imagens devem ser necessariamente quadradas (ou o mais quadradas possivel)  -->
+    <select style="position: absolute; left: 910px; top: 100px;" id="selectImage">
+      <option value="amoedo1.jpg">Imagem 1</option>
+      <option value="amoedo2.jpg">Imagem 2</option>
+      <option value="amoedo3.png">Imagem 3</option>
+    </select>
+    <!-- Fim da lista de imagens -->
 
-		if (atualizacao == true) {
 
-			if (fileUpload.files && fileUpload.files[0]) {
-				var FR = new FileReader();
-				FR.onload = function (e) {
-					var img2 = new Image();
-					img2.addEventListener("load", function () {
-						//context.drawImage(img, 0, 0)
-						console.log(img2);
 
-						img = createImage(img2.width, img2.height);
-						img.drawingContext.drawImage(img2, 0, 0);
-						console.log(img);
-					});
-					img2.src = e.target.result;
-				};
-				FR.readAsDataURL(fileUpload.files[0]);
-			}
 
-			atualizacao = false;
-		}
+    <!-- Lado do texto -->
+    <select style="position: absolute; left: 910px; top: 125px;" id="lado">
+      <option value="esquerdo">Lado esquerdo</option>
+      <option value="direito">Lado direito</option>
+    </select>
 
-	} else {
-		if (imagem != selectImage.value) {
-			carregarImagem();
-		}
-	}
+    <!-- Estilo da fonte -->
+    <select style="position: absolute; left: 910px; top: 150px;" id="fonte">
+      <option value="normal">Fonte normal</option>
+      <option value="italico">It&aacutelico</option>
+      <option value="negrito">Negrito</option>
+      <option value="negritoitalico">Negrito + it&aacutelico</option>
+    </select>
 
-	// inverte a imagem se a opção estiver marcada
-	if (inverter.checked) {
-		push()
-		scale(-1, 1)
-		image(img,-canvas.width + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height,canvas.height)
-		pop()
-	} else {
-		image(img, 0 + (canvas.width - img.width*canvas.height/img.height)*posicao.value/100, 0, img.width*canvas.height/img.height, canvas.height)
-	}
+    <!-- Esquema de cores -->
+    <select style="position: absolute; left: 910px; top: 175px;" id="scheme">
+      <option value="laranja">Laranja</option>
+      <option value="azul">Azul</option>
+      <option value="ancap">Ancap</option>
+    </select>
 
-	// Desenhar retângulo
-	if (retangulo.checked) {
-		noStroke() // remove as bordas do retângulo
-		fill(corRetg) // define cor do retângulo
+    <!-- Cor personalizada -->
+    <label style="position: absolute; left: 910px; top: 210px;">Cores customizadas </label>
+    <input type="color" name="color" id="colorpicker1" style="position: absolute; left: 910px; top: 232px;" >
+    <input type="color" name="color" id="colorpicker2" style="position: absolute; left: 980px; top: 232px;" >
+    <input type="color" name="color" id="colorpicker3" style="position: absolute; left: 1050px; top: 232px;" >
 
-		if (lado.value == "esquerdo") {
-			rect(0, 0, canvas.width * largRetangulo.value / largRetangulo.max, canvas.height)
-		} else {
-			rect(canvas.width - canvas.width * largRetangulo.value / largRetangulo.max, 0, canvas.width * largRetangulo.value / largRetangulo.max, canvas.height)
-		}
-	}
+    <!--  Inserir imagem  -->
+    <p style="position: absolute; left: 910px; top: 250px;"> Posi&ccedil&atildeo da imagem (para imagens n&atildeo quadradas)</p>
+    <input type='range' id="posicao" style="position: absolute; left: 900px; top: 290px;" min="0" max="100" value="50" class="slider"/>
 
-	// Desenha retangulo atrás do texto
-	if (highlight.checked) {
-		var teste = texto.value;
-		var lines = teste.split("\n");
-		var count = lines.length;
-		//console.log(count);
+    <!--  Inserir imagem  -->
+    <input type="checkbox" name="Imagem personalizada" id="custom" style="position: absolute; left: 910px; top: 320px;">
+    <p style="position: absolute; left: 935px; top: 305px;"> Usar imagem personalizada</p>
+    <input type='file' id="fileUpload" style="position: absolute; left: 910px; top: 345px;" accept="image/gif, image/jpeg, image/png"/>
 
-		fill(corHighL)
+    <!--  Opções disponíveis  -->
+    <div class="container" style="position: absolute; left: 650px; top: 360px; width: 250px; height: 200px">
+      <p style="position: absolute; left: 0px; top: 0px;">Op&ccedil&otildees:</p>
 
-		if (lado.value == "esquerdo") {
-			for (i = 0; i < count; i++) {
-				noStroke()
-				rect(22, canvas.height / 2 + tamanho.value * (i - count / 2 + 0.4), textWidth(lines[i]) * 1.03, tamanho.value * 0.75)
-			}
-		} else {
-			for (i = 0; i < count; i++) {
-				noStroke()
-				rect(canvas.width - 22 - textWidth(lines[i]) * 1.03, canvas.height / 2 + tamanho.value * (i - count / 2 + 0.4), textWidth(lines[i]) * 1.03, tamanho.value * 0.75)
-			}
-		}
-	}
+      <div class = "container" style="position: absolute; left: 0px; top: 45px; width: 250px; height: 200px">
+        <input type="checkbox" name="Retangulo" id="retangulo"> Ret&acircngulo<br>
+        <input type="checkbox" name="Highlight" id="highlight"> Highlight<br>
+        <input type="checkbox" name="Fonte branca" id="branco" checked> Fonte branca<br>
+        <input type="checkbox" name="Logo Ancap" id="logo_ancap"> Logotipo Ancap<br>
+        <input type="checkbox" name="Inverter Imagem" id="inverter"> Inverter Imagem<br>
 
-	// Escrever texto
-	textSize(tamanho.value * 1)
-	textLeading(tamanho.value * 1)
 
-	// define estilo da fonte
-	switch (fonte.value) {
-		case "normal":
-			textFont(fonteNormal)
-			break;
-		case "italico":
-			textFont(fonteItalico)
-			break;
-		case "negrito":
-			textFont(fonteNegrito)
-			break;
-		case "negritoitalico":
-			textFont(fonteNegritoItalico)
-			break;
-	}
+        <input type="range" min="0" max="20" value="10" class="slider" id="largRetangulo" style="position: absolute; left: 100px; top: 5px; width: 140px">
+      </div>
+    </div>
 
-	// define cor do texto
-	if (branco.checked) { fill(255) } else { fill(0) }
 
-	// escreve o texto em si e o logotipo do João Amoedo e do Partido Novo
 
-	if (logo_ancap.checked) {
+    <button id="btndownload" style="position: absolute; left: 650px; top: 585px;" >Salvar imagem</button>
 
-		if (scheme.value == "ancap" && retangulo.checked) { logo = logoAncapB } else { logo = logoAncap }
+    <script src="./js/generator.js"></script>
 
-	} else { logo = logoOrig }
+    <p style="position: absolute; left: 15px; top: 615px;">Pr&oacuteximas atualiza&ccedil&otildees:<br>
+      - Mais imagens pr&eacute definidas<br>
+      - Mais esquemas de cores<br><br>
+      Changelog:<br>
+      - Sistema de cores customizadas - por Pedro Henrique (github.com/pedrohenriquebr)</p>
+  </body>
 
-	if (lado.value == "esquerdo") {
-		textAlign(LEFT, CENTER)
-		text(texto.value, 25, canvas.height / 2)
-
-		fill(corLogo)
-
-		image(logo, canvas.width * largRetangulo.value / 40 - logo.width / 4 - 60, canvas.height - 30 - logo.height / 4 - 25, logo.width / 1.75, logo.height / 1.75)
-
-		noStroke()
-		rect(canvas.width * largRetangulo.value / 40 - logo.width / 4 + 50, canvas.height - 25 - logo.height / 4 - 25, logo.width / 2, logo.height / 2)
-		image(logoNovo, canvas.width * largRetangulo.value / 40 - logo.width / 4 + 50, canvas.height - 25 - logo.height / 4 - 25, logo.width / 2, logo.height / 2)
-	} else {
-		textAlign(RIGHT, CENTER)
-		text(texto.value, canvas.width - 25, canvas.height / 2)
-
-		fill(corLogo)
-
-		image(logo, canvas.width - canvas.width * largRetangulo.value / 40 - logo.width / 2 + 90, canvas.height - 30 - logo.height / 4 - 25, logo.width / 1.75, logo.height / 1.75)
-
-		noStroke()
-		rect(canvas.width - canvas.width * largRetangulo.value / 40 - logo.width / 4 - 50, canvas.height - 25 - logo.height / 4 - 25, logo.width / 2, logo.height / 2)
-		image(logoNovo, canvas.width - canvas.width * largRetangulo.value / 40 - logo.width / 4 - 50, canvas.height - 25 - logo.height / 4 - 25, logo.width / 2, logo.height / 2)
-
-	}
-
-	// Função para download da imagem
-	dwn.onclick = function () {
-		download(canvas, 'image.png');
-	}
-
-}
-
-// Baixar imagem em formato png
-function download(canvas, filename) {
-
-	var lnk = document.createElement('a'), e;
-
-	lnk.download = filename;
-
-	lnk.href = canvas.toDataURL("image/png;base64");
-
-	if (document.createEvent) {
-		e = document.createEvent("MouseEvents");
-		e.initMouseEvent("click", true, true, window,
-			0, 0, 0, 0, 0, false, false, false,
-			false, 0, null);
-
-		lnk.dispatchEvent(e);
-	} else if (lnk.fireEvent) {
-		lnk.fireEvent("onclick");
-	}
-}
+</html>
